@@ -1,0 +1,1 @@
+GET https://localhost:7205/v1/greeter/world
