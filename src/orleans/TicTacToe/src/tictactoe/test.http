@@ -1,0 +1,24 @@
+### createGame
+POST http://localhost:5015/Game/CreateGame HTTP/1.1
+
+### placeMove
+POST http://localhost:5015/game/ HTTP/1.1
+
+### getGames
+GET http://localhost:5015/Game/Index/ HTTP/1.1
+
+### getMoves
+GET http://localhost:5015/Game/GetMoves/ HTTP/1.1
+
+### makeMove
+POST http://localhost:5015/Game/MakeMove/ HTTP/1.1
+
+### joinGame
+POST http://localhost:5015/Game/Join/ HTTP/1.1
+
+### setName
+POST http://localhost:5015/Game/SetUser/ HTTP/1.1
+
+
+###
+GET https://localhost:7017/ l HTTP/1.1
