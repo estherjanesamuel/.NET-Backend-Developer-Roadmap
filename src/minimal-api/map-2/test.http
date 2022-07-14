@@ -1,4 +1,0 @@
-POST http://localhost:5106/ HTTP/1.1
-
-###
-GET http://localhost:5106/about HTTP/1.1
