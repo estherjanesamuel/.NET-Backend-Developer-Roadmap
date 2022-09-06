@@ -36,11 +36,13 @@ public class Person
 {
     [JsonPropertyName("FullName")]
     public string Name { get; set; }
+
+    // [JsonPropertyName("AGE")]
     public int Age { get; set; }
     public bool IsMarried { get; set; }
     public DateTimeOffset CurrentTime { get; set; }
 
-    // [JsonIgnore]
+    [JsonIgnore]
     public bool? IsWorking { get; set; }
     [JsonIgnore]
     public Dictionary<string, bool> Characters { get; set; }

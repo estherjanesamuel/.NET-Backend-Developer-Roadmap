@@ -2,31 +2,32 @@
 using System.Text.Json.Serialization;
 
 var app = WebApplication.Create();
+
 app.MapGet("/", () => {
     var payload = new Person
     {
-        Name = "Jane",
-        Age = 1,
+        Name = "Ephra",
+        Age = 2,
         IsMarried = false,
-        CurrentTime = DateTimeOffset.Now,
+        CurrentTime = DateTimeOffset.UtcNow,
         Characters = new Dictionary<string, bool>
         {
-            {"funny", true},
-            {"feisty", true},
-            {"brilliant", true},
-            {"foma", false},
-        },
-        IsWorking = false
+            {"Funny", true},
+            {"Feisty", true},
+            {"Briliant", true},
+            {"FOMA", false}
+        }
     };
 
-    var options = new JsonSerializerOptions
+    var opt = new JsonSerializerOptions
     {
         WriteIndented = true,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
     };
-    return Results.Json(payload, options);
+
+    return Results.Json(payload,opt);
 });
 
 app.Run();

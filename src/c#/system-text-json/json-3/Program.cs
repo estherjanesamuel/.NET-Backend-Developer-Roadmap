@@ -11,10 +11,10 @@ app.MapGet("/", () => {
         CurrentTime = DateTimeOffset.Now,
         Characters = new Dictionary<string, bool>
         {
-            {"funny", true},
-            {"feisty", true},
-            {"brilliant", true},
-            {"foma", false},
+            {"Funny", true},
+            {"Feisty", true},
+            {"Brilliant", true},
+            {"FOMA", false},
         },
         IsWorking = false
     };
