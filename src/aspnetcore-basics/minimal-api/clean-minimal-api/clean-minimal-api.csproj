@@ -7,8 +7,4 @@
     <RootNamespace>clean_minimal_api</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FastEndpoints" Version="5.4.1" />
-  </ItemGroup>
-
 </Project>
