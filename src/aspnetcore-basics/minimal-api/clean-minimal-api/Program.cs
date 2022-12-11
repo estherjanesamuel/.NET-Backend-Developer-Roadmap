@@ -8,7 +8,7 @@ var config = builder.Configuration;
 builder.Services.AddHealthChecks();
 builder.Services.AddFastEndpoints();
 builder.Services.AddSwaggerDoc();
-builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
+// builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 
