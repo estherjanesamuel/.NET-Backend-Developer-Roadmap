@@ -47,7 +47,7 @@ public class Program
         return author + " says, \"" + quote + "\"";
     }
 
-    public static List<(string quote, string author)>quotes = new()
+    public static List<(string quote, string author)> quotes = new()
     {
         ("These aren't the droids you're looking for.","Obi-Wan Kenobi"),
         ("I love you","Leia Organa"),
