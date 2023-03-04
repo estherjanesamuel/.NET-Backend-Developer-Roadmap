@@ -3,7 +3,7 @@ namespace mad_libs_test;
 public class Tests
 {
     [Test]
-    public void GetOutPut_WithAllWorlds_ReturnsPhrase()
+    public void GetOutPut_WithAllWords_ReturnsPhrase()
     {
         string noun = "dog";
         string verb = "walk";
