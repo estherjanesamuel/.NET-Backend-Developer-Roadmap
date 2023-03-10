@@ -22,7 +22,7 @@ builder.Host.UseOrleans(builder => {
         .Configure<EndpointOptions>(opt => opt.AdvertisedIPAddress = IPAddress.Loopback)
         .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(FeedSourceGrain).Assembly).WithReferences())
         .AddRedisGrainStorage("redis-rss-reader",  optBuilder => optBuilder.Configure(opt => {
-            opt.ConnectionString = "192.168.1.5:6379";
+            opt.ConnectionString = "127.0.0.1:6379"; //192.168.1.5
             opt.UseJson = true;
             opt.DatabaseNumber = 1;
         }));
@@ -43,7 +43,8 @@ app.MapGet("/", async ctx => {
     await feedSourceGrain.AddAsync(new FeedSource{
         Type = FeedType.Atom,
         Url = "https://www.reddit.com/r/dotnet.rss",
-        Website = "https://www.reddit.com/r/dotnet",
+        // Website = "https://www.reddit.com/r/dotnet",
+        Website = "https://libreddit.teknologiumum.com/r/dotnet",
         Title = "Reddit/r/dotnet"
     });
     var sources = await feedSourceGrain.GetAllAsync();

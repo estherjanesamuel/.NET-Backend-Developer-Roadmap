@@ -74,7 +74,6 @@ public class FeedFetcherReminder : Grain, IFeedFetcherReminder
 
 
 }
-
 public class FeedStreamReaderGrain : Grain, IFeedStreamReader
 {
     private readonly ILogger _logger;
@@ -98,7 +97,6 @@ public class FeedStreamReaderGrain : Grain, IFeedStreamReader
         });
     }
 }
-
 public class FeedSourceGrain : Grain, IFeedSource
 {
     private readonly IPersistentState<FeedSourceStore> _storage;
@@ -136,7 +134,6 @@ public class FeedSourceGrain : Grain, IFeedSource
         return feed;
     }
 }
-
 public class FeedFetchGrain : Grain, IFeedFetcher
 {
     private readonly IGrainFactory _grainFactory;
@@ -236,18 +233,15 @@ public class FeedFetchGrain : Grain, IFeedFetcher
         }
     }
 }
-
 public enum FeedType
 {
     Rss,
     Atom
 }
-
 public class FeedSourceStore
 {
     public List<FeedSource> Sources { get; set; } = new();
 }
-
 public class FeedSource
 {
     public string Url { get; set; } = string.Empty;
@@ -278,14 +272,12 @@ public class FeedSource
 
     }
 }
-
 public class FeedHistory
 {
     public DateTimeOffset TimeStamp { get;  set; }
     public bool IsValid { get;  set; }
     public string? Message { get;  set; }
 }
-
 public class FeedItem
 {
     public FeedChannel? Channel { get; set; }
@@ -311,7 +303,6 @@ public class FeedItem
     }
     
 }
-
 public class FeedChannel
 {
     public string? Title { get;  set; }
@@ -320,7 +311,6 @@ public class FeedChannel
     public bool HideTitle { get; internal set; }
     public bool HideDescription { get; internal set; }
 }
-
 public class Config
 {
     public static string StreamProvider { get; internal set; }
