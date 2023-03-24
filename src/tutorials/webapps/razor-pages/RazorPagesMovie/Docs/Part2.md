@@ -92,18 +92,15 @@ Option	Description
 --referenceScriptLibraries	Adds _ValidationScriptsPartial to Edit and Create pages
 Use the -h option to get help on the dotnet aspnet-codegenerator razorpage command:
 
-.NET CLI
-
-Copy
+```bash
 dotnet aspnet-codegenerator razorpage -h
 For more information, see dotnet aspnet-codegenerator.
+```
 
-Use SQLite for development, SQL Server for production
+### Use SQLite for development, SQL Server for production
 When SQLite is selected, the template generated code is ready for development. The following code shows how to select the SQLite connection string in development and SQL Server in production.
 
-C#
-
-Copy
+```csharp
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -139,22 +136,20 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-The preceding code doesn't call UseDeveloperExceptionPage in development because WebApplication calls UseDeveloperExceptionPage in development mode.
+```
+> The preceding code doesn't call UseDeveloperExceptionPage in development because WebApplication calls UseDeveloperExceptionPage in development mode.
 
-Files created and updated
+### Files created and updated
 The scaffold process creates the following files:
 
-Pages/Movies: Create, Delete, Details, Edit, and Index.
-Data/RazorPagesMovieContext.cs
-The created files are explained in the next tutorial.
+- Pages/Movies: Create, Delete, Details, Edit, and Index.
+- Data/RazorPagesMovieContext.cs  
+
+> The created files are explained in the next tutorial.
 
 The scaffold process adds the following highlighted code to the Program.cs file:
 
-Visual Studio
-Visual Studio Code / Visual Studio for Mac
-C#
-
-Copy
+```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
@@ -184,28 +179,27 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+```
+
 The Program.cs changes are explained later in this tutorial.
 
 
-Create the initial database schema using EF's migration feature
+### Create the initial database schema using EF's migration feature
 The migrations feature in Entity Framework Core provides a way to:
 
 Create the initial database schema.
 Incrementally update the database schema to keep it in sync with the app's data model. Existing data in the database is preserved.
-Visual Studio
-Visual Studio Code
-Visual Studio for Mac
+
 Right-click the RazorPagesMovie.csproj project, and then select Open in Integrated Terminal.
 
 The Terminal window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
 Run the following .NET CLI commands:
 
-.NET CLI
-
-Copy
+```bash
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+```
 The migrations command generates code to create the initial database schema. The schema is based on the model specified in DbContext. The InitialCreate argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
 The update command runs the Up method in migrations that have not been applied. In this case, update runs the Up method in the Migrations/<time-stamp>_InitialCreate.cs file, which creates the database.
@@ -223,11 +217,7 @@ ASP.NET Core is built with dependency injection. Services, such as the EF Core d
 
 The scaffolding tool automatically created a database context and registered it with the dependency injection container. The following highlighted code is added to the Program.cs file by the scaffolder:
 
-Visual Studio
-Visual Studio Code / Visual Studio for Mac
-C#
-
-Copy
+```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
@@ -257,14 +247,14 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+```
 The data context RazorPagesMovieContext:
 
 Derives from Microsoft.EntityFrameworkCore.DbContext.
 Specifies which entities are included in the data model.
 Coordinates EF Core functionality, such as Create, Read, Update and Delete, for the Movie model.
-C#
-
-Copy
+ 
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -284,21 +274,23 @@ namespace RazorPagesMovie.Data
         public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; } = default!;
     }
 }
+```
+
+
 The preceding code creates a DbSet<Movie> property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a DbContextOptions object. For local development, the Configuration system reads the connection string from the appsettings.json file.
 
 
-Test the app
+### Test the app
 Run the app and append /Movies to the URL in the browser (http://localhost:port/movies).
 
 If you receive the following error:
 
-Console
-
-Copy
+```bash
 SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
 Login failed for user 'User-name'.
+```
 You missed the migrations step.
 
 Test the Create New link.
@@ -307,7 +299,7 @@ Create page
 
  Note
 
-You may not be able to enter decimal commas in the Price field. To support jQuery validation for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see this GitHub issue.
+> You may not be able to enter decimal commas in the Price field. To support jQuery validation for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see this GitHub issue.
 
 Test the Edit, Details, and Delete links.
 
