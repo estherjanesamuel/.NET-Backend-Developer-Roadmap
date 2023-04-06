@@ -1,0 +1,50 @@
+@page
+@model RazorMvcBasic.Pages.IndexRazorPagesModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razor MVC example</title>
+</head>
+
+<body>
+    <h1>Razor Pages Implementation </h1>
+    <p>Add yout entry to guestbook.</p>
+    <form action="" method="post">
+        <table>
+            <thead>
+
+                <tr>
+                    <th>Id</th>
+                    <Th>Email</Th>
+                    <th>Content</th>
+                    <th>Likes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entry in Model.Entries)
+                {
+                    <tr>
+                        <td>@entry.Id</td>
+                        <td>@entry.Email</td>
+                        <td>@entry.Content</td>
+                        <td>@entry.Likes</td>
+                        <td>
+                            <button type="submit" asp-page-handler="like" asp-route-id="@entry.Id">Like</button>
+                            <a asp-page="./Edit" asp-route-id="@entry.Id">edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-page="./Create">Create</a>
+    </form>
+    <p>Go back to <a href="/Index">Home</a></p>
+</body>
+
+</html>
