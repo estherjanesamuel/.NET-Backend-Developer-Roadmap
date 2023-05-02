@@ -1,0 +1,2 @@
+namespace article_test;
+
